@@ -7,3 +7,5 @@ $app->get('/api/search/{keyword}', function($keyword) use($app) {
 $app->get('/', function() {
     return 'home page';
 });
+
+return $app;
