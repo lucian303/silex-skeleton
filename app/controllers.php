@@ -8,8 +8,8 @@ $app->post('/api/add/{keyword}', function() use ($app) {
 	return json_encode(array('result' => 'Item posted'));
 });
 
-$app->get('/', function() {
-    return 'home page';
+$app->get('/', function() use ($app) {
+    return $app['twig']->render('index.twig', array());
 });
 
 return $app;
