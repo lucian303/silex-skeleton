@@ -14,12 +14,12 @@ foreach ($fileIterator as $modulePath => $module) {
 		$dirNameSplit = explode(DIRECTORY_SEPARATOR, $dirName);
 
 		// Require controller files (must return $app back)
-		if ($dirNameSplit[count($dirNameSplit) - 1] == 'controllers') {
+		if ('controllers' == $dirNameSplit[count($dirNameSplit) - 1]) {
 			foreach(new RecursiveDirectoryIterator($dirName, FilesystemIterator::SKIP_DOTS) as $controllerName => $controller) {
 				$app = require_once($controllerName);
 			}
 		}
-		else if ($dirNameSplit[count($dirNameSplit) - 1] == 'views') {
+		else if ('views' == $dirNameSplit[count($dirNameSplit) - 1]) {
 			// Get a list of views directories to pass to twig or hopfeully Zend_View soon
 			$viewDirs[] = $dirName;
 		}
