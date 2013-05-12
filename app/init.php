@@ -13,8 +13,8 @@ use Monolog\Logger;
 
 $app = new Silex\Application();
 
-// TODO: Set this based on config
-$app['debug'] = true;
+$environmentConfigFileName = getenv('SILEX_ENV') . '.php';
+require_once __DIR__ . "/config/" . $environmentConfigFileName;
 
 $app->register(new HttpCacheServiceProvider());
 $app->register(new SessionServiceProvider());
