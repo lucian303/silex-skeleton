@@ -7,3 +7,6 @@ $app->get('/api/search/{keyword}', function($keyword) use($app) {
 $app->post('/api/add/{keyword}', function() use ($app) {
 	return $app->json(array('result' => 'Item posted'));
 });
+
+/** @return $app Silex\Application */
+return $app;

@@ -8,8 +8,8 @@ use Silex\Provider\SessionServiceProvider;
 use Silex\Provider\TranslationServiceProvider;
 use Silex\Provider\UrlGeneratorServiceProvider;
 use Silex\Provider\ValidatorServiceProvider;
-use Monolog\Logger;
 use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
+use Monolog\Logger;
 
 $app = new Silex\Application();
 
@@ -51,8 +51,7 @@ $app->register(new TranslationServiceProvider(array(
 $app->register(new MonologServiceProvider(), array(
     'monolog.logfile' => __DIR__.'/../log/app.log',
     'monolog.name'    => 'app',
-    'monolog.level'   => 300,
-//    'monolog.level'   => Logger::INFO,
+    'monolog.level'   => Logger::INFO,
 ));
 
 $app->register(new Silex\Provider\DoctrineServiceProvider());

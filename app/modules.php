@@ -7,7 +7,7 @@ use Silex\Provider\TwigServiceProvider;
 $path = __DIR__ . '/modules/';
 $dirIterator = new RecursiveDirectoryIterator($path, FilesystemIterator::SKIP_DOTS);
 $fileIterator = new IteratorIterator($dirIterator);
-$viewDirs = [];
+$viewDirs = array(__DIR__ . '/layouts');
 
 foreach ($fileIterator as $modulePath => $module) {
 	foreach(new RecursiveDirectoryIterator($module, FilesystemIterator::SKIP_DOTS) as $dirName => $directory) {
