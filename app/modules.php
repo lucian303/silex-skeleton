@@ -8,7 +8,7 @@ use Silex\Provider\TwigServiceProvider;
  * Each controller file must return an instance of $app
  */
 $viewDirs = array(__DIR__ . '/layouts');
-$path = __DIR__ . '/modules/';
+$path = __DIR__ . '/modules';
 $dirIterator = new RecursiveDirectoryIterator($path, FilesystemIterator::SKIP_DOTS);
 $fileIterator = new IteratorIterator($dirIterator);
 
