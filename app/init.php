@@ -9,21 +9,20 @@ use Silex\Provider\TranslationServiceProvider;
 use Silex\Provider\TwigServiceProvider;
 use Silex\Provider\UrlGeneratorServiceProvider;
 use Silex\Provider\ValidatorServiceProvider;
-use SilexAssetic\AsseticExtension;
-use Symfony\Component\Security\Core\Encoder\PlaintextPasswordEncoder;
-use Symfony\Component\Translation\Loader\YamlFileLoader;
+use Monolog\Logger;
+use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
 
 $app = new Silex\Application();
 
+// TODO: Set this based on config
 $app['debug'] = true;
 
-$app->register(new HttpCacheServiceProvider());
-
-$app->register(new SessionServiceProvider());
-$app->register(new ValidatorServiceProvider());
-$app->register(new FormServiceProvider());
-$app->register(new UrlGeneratorServiceProvider());
-
+//$app->register(new HttpCacheServiceProvider());
+//$app->register(new SessionServiceProvider());
+//$app->register(new ValidatorServiceProvider());
+//$app->register(new FormServiceProvider());
+//$app->register(new UrlGeneratorServiceProvider());
+//
 // $app->register(new SecurityServiceProvider(), array(
 //     'security.firewalls' => array(
 //         'admin' => array(
@@ -40,18 +39,18 @@ $app->register(new UrlGeneratorServiceProvider());
 //     ),
 // ));
 
-// $app['security.encoder.digest'] = $app->share(function ($app) {
-//     return new PlaintextPasswordEncoder();
-// });
+ $app['security.encoder.digest'] = $app->share(function () {
+     return new MessageDigestPasswordEncoder();
+ });
 
 $app->register(new TranslationServiceProvider(array(
-    'locale_fallback' => 'en'
+    'locale_fallback' => 'en',
 )));
 
 $app->register(new MonologServiceProvider(), array(
     'monolog.logfile' => __DIR__.'/../log/app.log',
     'monolog.name'    => 'app',
-    'monolog.level'   => 300 // = Logger::WARNING
+    'monolog.level'   => Logger::INFO,
 ));
 
 $app->register(new TwigServiceProvider(), array(
@@ -60,9 +59,10 @@ $app->register(new TwigServiceProvider(), array(
         'strict_variables' => true
     ),
     'twig.form.templates' => array('form_div_layout.html.twig', 'templates/form_div_layout.html.twig'),
-    'twig.path'           => array(__DIR__ . '/views')
+    'twig.path'           => array(__DIR__ . '/views'),
 ));
 
 $app->register(new Silex\Provider\DoctrineServiceProvider());
 
+/** @vreturn $app Silex\Application */
 return $app;
