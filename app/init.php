@@ -22,21 +22,23 @@ $app->register(new ValidatorServiceProvider());
 $app->register(new FormServiceProvider());
 $app->register(new UrlGeneratorServiceProvider());
 
-// $app->register(new SecurityServiceProvider(), array(
-//     'security.firewalls' => array(
-//         'admin' => array(
-//             'pattern' => '^/',
-//             'form'    => array(
-//                 'login_path'         => '/login',
-//                 'username_parameter' => 'form[username]',
-//                 'password_parameter' => 'form[password]',
-//             ),
-//             'logout'    => true,
-//             'anonymous' => true,
-//             'users'     => $app['security.users'],
-//         ),
-//     ),
-// ));
+$app['security.users'] = array('lucian303' => 'password');
+
+ $app->register(new SecurityServiceProvider(), array(
+     'security.firewalls' => array(
+         'admin' => array(
+             'pattern' => '^/write',
+             'form'    => array(
+                 'login_path'         => '/login',
+                 'username_parameter' => 'form[username]',
+                 'password_parameter' => 'form[password]',
+             ),
+             'logout'    => true,
+             'anonymous' => true,
+             'users'     => $app['security.users'],
+         ),
+     ),
+ ));
 
  $app['security.encoder.digest'] = $app->share(function () {
      return new MessageDigestPasswordEncoder();
