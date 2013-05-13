@@ -13,10 +13,10 @@
 	],
 	"license": "MIT",
 	"autoload": {
+		"classmap": ["vendor/"],
 		"psr-0": {
 			"App": "app/src/"
-		},
-		"classmap": ["vendor/"]
+		}
 	},
 
 	"require": {
