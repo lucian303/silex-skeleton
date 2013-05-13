@@ -1,8 +1,22 @@
 {
+	"name": "lucian303/silex-skeleton",
+	"description": "App skeleton Using the Silex Framework",
+	"version": "0.0.1-dev",
+	"type": "project",
+	"authors": [
+		{
+			"name": "Lucian Hontau",
+			"email": "lucian303@gmail.com",
+			"homepage": "http://lucianux.com",
+			"role": "Developer"
+		}
+	],
+	"license": "MIT",
 	"autoload": {
 		"psr-0": {
 			"App": "app/src/"
-		}
+		},
+		"classmap": ["vendor/"]
 	},
 
 	"require": {
