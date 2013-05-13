@@ -10,10 +10,31 @@ use Silex\Provider\UrlGeneratorServiceProvider;
 use Silex\Provider\ValidatorServiceProvider;
 use Silex\Provider\DoctrineServiceProvider;
 use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Debug\ErrorHandler;
 use Monolog\Logger;
 use App\User\UserProvider;
 
-$app = new Silex\Application();
+// Register global error handler to turn errors into exceptions
+ErrorHandler::register();
+
+$app = new App\Application();
+
+$app->error(function (\Exception $e, $code) use ($app) {
+	if (!$app['debug']) {
+	    switch ($code) {
+	        case 404:
+	            $message = 'The requested page could not be found.';
+	            break;
+	        default:
+	            $message = 'We are sorry, but something went terribly wrong.';
+	    }
+
+		return new Response($message, $code);
+	}
+
+	throw $e;
+});
 
 // Load environment specific config
 $environmentConfigFileName = getenv('SILEX_ENV') . '.php';
