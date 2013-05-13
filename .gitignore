@@ -1,7 +1,10 @@
 .idea/*
 
-# Symfony directories
+
+# Composer
 vendor/*
-*/logs/*
-*/cache/*
+
+# Silex directories
+log/*
+cache/*
 web/uploads/*
