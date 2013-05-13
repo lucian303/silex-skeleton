@@ -61,5 +61,5 @@ $app->register(new MonologServiceProvider(), array(
 
 $app->register(new DoctrineServiceProvider());
 
-/** @vreturn $app Silex\Application */
+/** @return $app Silex\Application */
 return $app;
