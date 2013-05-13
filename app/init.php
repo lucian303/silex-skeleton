@@ -29,9 +29,16 @@ $app['session.storage.options'] = array(
 	'cookie_httponly' => true,
 );
 
-$app->register(new HttpCacheServiceProvider());
+$app->register(new HttpCacheServiceProvider(), array(
+	'http_cache.cache_dir' => __DIR__ . '/../cache/',
+	'http_cache.esi'       => null,
+));
+
 $app->register(new ValidatorServiceProvider());
+
 $app->register(new FormServiceProvider());
+$app['form.secret'] = md5(time());
+
 $app->register(new UrlGeneratorServiceProvider());
 
 $app->register(new SecurityServiceProvider());

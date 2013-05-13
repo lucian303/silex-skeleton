@@ -4,4 +4,4 @@
 $app = require_once 'init.php';
 $app = require_once 'modules.php';
 
-$app->run();
+$app['http_cache']->run();
