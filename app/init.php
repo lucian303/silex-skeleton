@@ -20,7 +20,15 @@ ErrorHandler::register();
 
 $app = new App\Application();
 
+$app->register(new MonologServiceProvider(), array(
+    'monolog.logfile' => __DIR__.'/../log/app.log',
+    'monolog.name'    => 'silex',
+    'monolog.level'   => Logger::INFO,
+));
+
 $app->error(function (\Exception $e, $code) use ($app) {
+	$app['monolog']->err(var_export($e, true));
+
 	if (!$app['debug']) {
 	    switch ($code) {
 	        case 404:
@@ -36,9 +44,17 @@ $app->error(function (\Exception $e, $code) use ($app) {
 	throw $e;
 });
 
+
 // Load environment specific config
-$environmentConfigFileName = getenv('SILEX_ENV') . '.php';
-require_once __DIR__ . "/config/" . $environmentConfigFileName;
+$environmentConfig = trim(getenv('SILEX_ENV'));
+$envs = array('dev', 'test', 'stage', 'prod');
+if (in_array($environmentConfig, $envs)) {
+	$fileName = __DIR__ . "/config/" . $environmentConfig . '.php';
+	require_once $fileName;
+}
+else {
+	$app['monolog']->err('Environment config not loaded. Environment not in array.');
+}
 
 // Register Service Providers
 $app->register(new SessionServiceProvider());
@@ -90,12 +106,6 @@ $app->register(new TranslationServiceProvider(array(
 	'locale' => 'en',
     'locale_fallback' => 'en',
 )));
-
-$app->register(new MonologServiceProvider(), array(
-    'monolog.logfile' => __DIR__.'/../log/app.log',
-    'monolog.name'    => 'silex',
-    'monolog.level'   => Logger::INFO,
-));
 
 $app->register(new DoctrineServiceProvider());
 
