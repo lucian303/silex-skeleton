@@ -71,7 +71,7 @@ $app->register(new TranslationServiceProvider(array(
 
 $app->register(new MonologServiceProvider(), array(
     'monolog.logfile' => __DIR__.'/../log/app.log',
-    'monolog.name'    => 'app',
+    'monolog.name'    => 'silex',
     'monolog.level'   => Logger::INFO,
 ));
 
