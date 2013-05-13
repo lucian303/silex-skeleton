@@ -19,8 +19,17 @@ $environmentConfigFileName = getenv('SILEX_ENV') . '.php';
 require_once __DIR__ . "/config/" . $environmentConfigFileName;
 
 // Register Service Providers
-$app->register(new HttpCacheServiceProvider());
 $app->register(new SessionServiceProvider());
+$app['session.storage.options'] = array(
+	'name' => 'silex',
+	'id' => 'silex',
+	'cookie_lifetime' => 0, // browser session
+	'cookie_path' => '/',
+	'cookie_secure' => false, // TODO: change for prod
+	'cookie_httponly' => true,
+);
+
+$app->register(new HttpCacheServiceProvider());
 $app->register(new ValidatorServiceProvider());
 $app->register(new FormServiceProvider());
 $app->register(new UrlGeneratorServiceProvider());
