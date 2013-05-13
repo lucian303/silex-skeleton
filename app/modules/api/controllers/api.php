@@ -1,6 +1,6 @@
 <?php
 
-/** @var $app App\Application */
+/** @var $api Silex\ControllerCollection */
 $api = $app['controllers_factory'];
 
 // Add controllers for API here
