@@ -11,6 +11,7 @@ use Silex\Provider\ValidatorServiceProvider;
 use Silex\Provider\DoctrineServiceProvider;
 use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
 use Monolog\Logger;
+use App\User\UserProvider;
 
 $app = new Silex\Application();
 
@@ -50,20 +51,19 @@ $app['security.firewalls'] = array(
         'pattern' => '^/.*$',
         'form' => array('login_path' => '/login', 'check_path' => '/login_check'),
         'logout' => array('logout_path' => '/logout'),
-//        'users' => $app->share(function () use ($app) {
-//            return new UserProvider($app['db']);
-//        }),
-        'users' => array(
-            'admin' => array('ROLE_ADMIN', '5f4dcc3b5aa765d61d8327deb882cf99'),
-        ),
+        'users' => $app->share(function () use ($app) {
+	        return new UserProvider($app['db']); // use custom userprovider to auth with db
+        }),
     ),
 );
 
 
  $app['security.encoder.digest'] = $app->share(function () {
-	 // md5 for testing
-     return new MessageDigestPasswordEncoder('md5', false, 0);
+	 // sha512, base64encoded, 3 iteration hash
+     return new MessageDigestPasswordEncoder('sha512', true, 3); // three hash passes should be plenty
  });
+
+//echo $app['security.encoder.digest']->encodePassword('password', ''); die; // print a password hash
 
 $app->register(new TranslationServiceProvider(array(
     'locale_fallback' => 'en',
