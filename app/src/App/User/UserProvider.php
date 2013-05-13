@@ -1,4 +1,5 @@
 <?php
+
 namespace App\User;
 
 use Symfony\Component\Security\Core\User\UserProviderInterface;
