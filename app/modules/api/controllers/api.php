@@ -1,4 +1,4 @@
 <?php
 
-/** @return $app Silex\Application */
+/** @return $app App\Application */
 return $app;
