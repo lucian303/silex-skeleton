@@ -8,40 +8,45 @@ use Silex\Provider\SessionServiceProvider;
 use Silex\Provider\TranslationServiceProvider;
 use Silex\Provider\UrlGeneratorServiceProvider;
 use Silex\Provider\ValidatorServiceProvider;
+use Silex\Provider\DoctrineServiceProvider;
 use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
 use Monolog\Logger;
 
 $app = new Silex\Application();
 
+// Load environment specific config
 $environmentConfigFileName = getenv('SILEX_ENV') . '.php';
 require_once __DIR__ . "/config/" . $environmentConfigFileName;
 
+// Register Service Providers
 $app->register(new HttpCacheServiceProvider());
 $app->register(new SessionServiceProvider());
 $app->register(new ValidatorServiceProvider());
 $app->register(new FormServiceProvider());
 $app->register(new UrlGeneratorServiceProvider());
 
-$app['security.users'] = array('lucian303' => 'password');
+$app->register(new SecurityServiceProvider());
+$app['security.firewalls'] = array(
+    'login' => array(
+        'pattern' => '^/login$',
+    ),
+    'secured' => array(
+        'pattern' => '^/.*$',
+        'form' => array('login_path' => '/login', 'check_path' => '/login_check'),
+        'logout' => array('logout_path' => '/logout'),
+//        'users' => $app->share(function () use ($app) {
+//            return new UserProvider($app['db']);
+//        }),
+        'users' => array(
+            'admin' => array('ROLE_ADMIN', '5f4dcc3b5aa765d61d8327deb882cf99'),
+        ),
+    ),
+);
 
- $app->register(new SecurityServiceProvider(), array(
-     'security.firewalls' => array(
-         'admin' => array(
-             'pattern' => '^/write',
-             'form'    => array(
-                 'login_path'         => '/login',
-                 'username_parameter' => 'form[username]',
-                 'password_parameter' => 'form[password]',
-             ),
-             'logout'    => true,
-             'anonymous' => true,
-             'users'     => $app['security.users'],
-         ),
-     ),
- ));
 
  $app['security.encoder.digest'] = $app->share(function () {
-     return new MessageDigestPasswordEncoder();
+	 // md5 for testing
+     return new MessageDigestPasswordEncoder('md5', false, 0);
  });
 
 $app->register(new TranslationServiceProvider(array(
@@ -54,7 +59,7 @@ $app->register(new MonologServiceProvider(), array(
     'monolog.level'   => Logger::INFO,
 ));
 
-$app->register(new Silex\Provider\DoctrineServiceProvider());
+$app->register(new DoctrineServiceProvider());
 
 /** @vreturn $app Silex\Application */
 return $app;
