@@ -24,7 +24,7 @@ foreach ($fileIterator as $modulePath => $module) {
 			}
 		}
 		else if ('views' == $lastDir) {
-			// Get a list of views directories to pass to twig or hopfeully Zend_View soon
+			// Get a list of views directories to pass to twig
 			$viewDirs[] = $dirName;
 		}
 	}

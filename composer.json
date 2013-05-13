@@ -13,8 +13,6 @@
 		"symfony/form"          : "~2.2",
 		"symfony/security"      : "~2.2",
 		"symfony/translation"   : "~2.2",
-		"symfony/validator"     : "~2.2",
-
-		"zendframework/zend-view"   : "~2.1"
+		"symfony/validator"     : "~2.2"
 	}
 }
