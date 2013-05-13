@@ -1,10 +1,21 @@
 {% extends "main.layout.twig" %}
 
 {% block content %}
-	<form action="{{ path('login_check') }}" method="post">
-	    {{ error }}
-	    <input class="login-username" type="text" name="_username" value="{{ last_username }}" />
-	    <input class="login-password" type="password" name="_password" value="" />
-	    <input class="login-submit"type="submit" />
-	</form>
+	<hr />
+
+	<!-- Example row of columns -->
+	<div class="row-fluid">
+		<div class="span12">
+			<div class='body-content' style="text-align: center;">
+				<form action="{{ path('login_check') }}" method="post">
+				    {{ error }}
+				    <input class="login-username" type="text" name="_username" value="{{ last_username }}" />
+				    <input class="login-password" type="password" name="_password" value="" />
+				    <input class="login-submit"type="submit" />
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<hr />
 {% endblock %}
