@@ -66,6 +66,7 @@ $app['security.firewalls'] = array(
 //echo $app['security.encoder.digest']->encodePassword('password', ''); die; // print a password hash
 
 $app->register(new TranslationServiceProvider(array(
+	'locale' => 'en',
     'locale_fallback' => 'en',
 )));
 
