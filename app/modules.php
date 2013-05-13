@@ -30,7 +30,7 @@ foreach ($fileIterator as $modulePath => $module) {
 	}
 }
 
-/** @var $app Silex\Application */
+/** @var $app App\Application */
 $app->register(new TwigServiceProvider(), array(
     'twig.options'        => array(
         'cache'            => isset($app['twig.options.cache']) ? $app['twig.options.cache'] : false,
@@ -40,5 +40,4 @@ $app->register(new TwigServiceProvider(), array(
     'twig.path'           => $viewDirs,
 ));
 
-/** @vreturn $app Silex\Application */
 return $app;
