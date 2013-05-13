@@ -21,7 +21,7 @@ ErrorHandler::register();
 $app = new App\Application();
 
 $app->register(new MonologServiceProvider(), array(
-    'monolog.logfile' => __DIR__.'/../log/app.log',
+    'monolog.logfile' => __DIR__ . '/../log/app.log',
     'monolog.name'    => 'silex',
     'monolog.level'   => Logger::INFO,
 ));

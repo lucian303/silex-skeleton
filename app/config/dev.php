@@ -11,3 +11,5 @@ $app['db.options'] = array(
 	'charset' => 'utf8',
 	'port' => 3306,
 );
+
+$app['twig.options.cache'] = __DIR__ . '/../../cache';
