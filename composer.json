@@ -26,6 +26,7 @@
 		"doctrine/dbal": "~2.3",
 		"monolog/monolog": "~1.5",
 		"twig/twig": "~1.12",
+		"kriswallsmith/assetic": "~1.0",
 
 		"symfony/twig-bridge": "~2.2",
 		"symfony/config": "~2.2",
