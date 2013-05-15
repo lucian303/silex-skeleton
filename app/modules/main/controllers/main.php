@@ -14,4 +14,5 @@ $app->get('/login', function(Request $request) use ($app) {
     ));
 });
 
+/** @return $app Silex\Application */
 return $app;

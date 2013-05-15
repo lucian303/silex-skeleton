@@ -40,4 +40,5 @@ $app->register(new TwigServiceProvider(), array(
     'twig.path'           => $viewDirs,
 ));
 
+/** @return $app Silex\Application */
 return $app;

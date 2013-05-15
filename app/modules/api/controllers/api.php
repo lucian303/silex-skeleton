@@ -10,4 +10,6 @@ $api->get('/search/{name}', function($name) use($app) {
 });
 
 $app->mount('/api', $api);
+
+/** @return $app Silex\Application */
 return $app;
