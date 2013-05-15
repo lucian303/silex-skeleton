@@ -27,6 +27,7 @@
 		"monolog/monolog": "~1.5",
 		"twig/twig": "~1.12",
 		"kriswallsmith/assetic": "~1.0",
+		"mheap/silex-assetic": "1.0.*@dev",
 
 		"symfony/twig-bridge": "~2.2",
 		"symfony/config": "~2.2",

@@ -9,6 +9,7 @@ use Silex\Provider\TranslationServiceProvider;
 use Silex\Provider\UrlGeneratorServiceProvider;
 use Silex\Provider\ValidatorServiceProvider;
 use Silex\Provider\DoctrineServiceProvider;
+use SilexAssetic\AsseticServiceProvider;
 use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Debug\ErrorHandler;
@@ -108,6 +109,36 @@ $app->register(new TranslationServiceProvider(array(
 )));
 
 $app->register(new DoctrineServiceProvider());
+
+if (isset($app['assetic.enabled']) && $app['assetic.enabled']) {
+    $app->register(new AsseticServiceProvider(), array(
+        'assetic.options' => array(
+            'debug'            => $app['debug'],
+            'auto_dump_assets' => $app['debug'],
+        ),
+        'assetic.filters' => $app->protect(function($fm) use ($app) {
+            $fm->set('lessphp', new Assetic\Filter\LessphpFilter());
+        }),
+        'assetic.assets' => $app->protect(function($am, $fm) use ($app) {
+            $am->set('styles', new Assetic\Asset\AssetCache(
+                new Assetic\Asset\GlobAsset(
+                    $app['assetic.input.path_to_css'],
+                    array($fm->get('lessphp'))
+                ),
+                new Assetic\Cache\FilesystemCache($app['assetic.path_to_cache'])
+            ));
+            $am->get('styles')->setTargetPath($app['assetic.output.path_to_css']);
+
+            $am->set('scripts', new Assetic\Asset\AssetCache(
+                new Assetic\Asset\GlobAsset(
+                    $app['assetic.input.path_to_js']
+                ),
+                new Assetic\Cache\FilesystemCache($app['assetic.path_to_cache'])
+            ));
+            $am->get('scripts')->setTargetPath($app['assetic.output.path_to_js']);
+        })
+    ));
+}
 
 /** @return $app Silex\Application */
 return $app;
