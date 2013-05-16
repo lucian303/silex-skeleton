@@ -36,7 +36,7 @@ $app->register(new TwigServiceProvider(), array(
         'cache'            => isset($app['twig.options.cache']) ? $app['twig.options.cache'] : false,
         'strict_variables' => true
     ),
-    'twig.form.templates' => array('form_div_layout.html.twig', 'templates/form_div_layout.html.twig'),
+//    'twig.form.templates' => array('form_div_layout.html.twig', 'templates/form_div_layout.html.twig'),
     'twig.path'           => $viewDirs,
 ));
 
