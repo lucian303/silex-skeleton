@@ -1,7 +1,7 @@
-# silex-skeleton
-==============
+## silex-skeleton
 
-## A Silex application skeleton for macro and micro apps.
+### A Silex application skeleton for macro and micro apps.
+==
 
 The skeleton sets up Silex and common service providers such as db, logging, security, etc. Working login based on MySQL (or other RDBMS).
 
@@ -11,8 +11,8 @@ The skeleton is split up and modularized for the controllers and views. This let
 
 **Autoloading, even with a generated classmap still takes up 30% of the request's time. This is where real optimization efforts should be focused as this is a problem for all frameworks that use autoloading. Ie-> all except CodeIgniter.**
 
-# Usage
-=====
+## Usage
+==
 
 Clone the repo. Write your code. Build your dream (or nightmare).
 
