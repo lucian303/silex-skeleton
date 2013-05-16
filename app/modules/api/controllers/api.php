@@ -6,7 +6,7 @@ $api = $app['controllers_factory'];
 
 // Add controllers for API here
 $api->get('/search/{name}', function($name) use($app) {
-	return $app->json(array($name));
+	return $app->json(array("hello $name"));
 });
 
 $app->mount('/api', $api);

@@ -1,7 +1,12 @@
 // app.js
 (function($) {
 	$(document).ready(function() {
-		// main jq entry point (not using backbone yet)
-
+		$('#button-ajax-test').click(function() {
+			$.ajax('/api/search/lucian', {
+				success: function(data) {
+					console.log(data);
+				}
+			});
+		});
 	});
 })(jQuery);
