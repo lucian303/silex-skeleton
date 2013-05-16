@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <title>silex-skeleton by lucian303</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>silex-skeleton</h1>
+        <h2>A Silex application skeleton for macro and micro apps</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/lucian303/silex-skeleton/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/lucian303/silex-skeleton/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/lucian303/silex-skeleton" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h2>silex-skeleton</h2>
+
+<h3>A Silex application skeleton for macro and micro apps.</h3>
+
+<p>The skeleton sets up Silex and common service providers such as db, logging, security, etc. Working login based on MySQL (or other RDBMS).</p>
+
+<p>It uses Twig currently for simplicity (8-10% performance hit for the templating engine). Due to convenience, I can accept this for now, although a switch to Zend_View / Zend_Layout would be preferable (assuming it can be benchmarked).</p>
+
+<p>The skeleton is split up and modularized for the controllers and views. This lets the framework do what it does best (server HTTP requests) while decoupling our code from the delivery mechanism (Silex). Also, it allows simple organization using the module pattern (in php using $var = require_once 'somefile.php') and efficient loading as it skips the autoloader. It loads all controller routes into the app at all times, but so does every other major framework. They are just registered callbacks and this does not have a major impact on performance.</p>
+
+<p><strong>Autoloading, even with a generated classmap still takes up 30% of the request's time. This is where real optimization efforts should be focused as this is a problem for all frameworks that use autoloading. Ie-&gt; all except CodeIgniter.</strong></p>
+
+<h3>Usage</h3>
+
+<p>Clone the repo. Write your code. Build your dream (or nightmare).</p>
+
+<p>Feature requests, bug reports, ideas, discussions, comments, are all very welcome.</p>
+
+<p>Enjoy!</p>
+
+<p>Lucian Hontau (lucian303)</p>
+
+<p><a href="http://lucianux.com/">http://lucianux.com/</a></p>
+
+<p>Copyright 2013 Lucian Hontau</p>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
