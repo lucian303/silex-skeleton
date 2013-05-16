@@ -1,7 +1,7 @@
 silex-skeleton
 ==============
 
-A silex application skeleton.
+A silex application skeleton for macro and micro apps.
 
 It sets up Silex and common service providers such as db, logging, security, etc. Working login based on MySQL (or other RDBMS).
 
