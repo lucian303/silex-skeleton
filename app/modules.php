@@ -9,16 +9,16 @@ use Silex\Provider\TwigServiceProvider;
  */
 $viewDirs = array(__DIR__ . '/layouts');
 $path = __DIR__ . '/modules';
-$dirIterator = new RecursiveDirectoryIterator($path, FilesystemIterator::SKIP_DOTS);
-$fileIterator = new IteratorIterator($dirIterator);
+$dirIterator = new \RecursiveDirectoryIterator($path, \FilesystemIterator::SKIP_DOTS);
+$fileIterator = new \IteratorIterator($dirIterator);
 
 foreach ($fileIterator as $modulePath => $module) {
-	foreach(new RecursiveDirectoryIterator($module, FilesystemIterator::SKIP_DOTS) as $dirName => $directory) {
+	foreach(new \RecursiveDirectoryIterator($module, \FilesystemIterator::SKIP_DOTS) as $dirName => $directory) {
 		$dirNameSplit = explode(DIRECTORY_SEPARATOR, $dirName);
 		$lastDir = $dirNameSplit[count($dirNameSplit) - 1];
 
 		if ('controllers' == $lastDir) {
-			foreach(new RecursiveDirectoryIterator($dirName, FilesystemIterator::SKIP_DOTS) as $controllerName => $controller) {
+			foreach(new \RecursiveDirectoryIterator($dirName, \FilesystemIterator::SKIP_DOTS) as $controllerName => $controller) {
 				// Required controller files (must return $app back)
 				$app = require_once($controllerName);
 			}
