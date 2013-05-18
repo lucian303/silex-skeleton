@@ -140,5 +140,15 @@ if (isset($app['assetic.enabled']) && $app['assetic.enabled']) {
     ));
 }
 
+$app->register(new Silex\Provider\SwiftmailerServiceProvider());
+$app['swiftmailer.options'] = array(
+    'host' => 'localhost',
+    'port' => '25',
+    'username' => 'username',
+    'password' => 'password',
+    'encryption' => null,
+    'auth_mode' => null
+);
+
 /** @return $app Silex\Application */
 return $app;

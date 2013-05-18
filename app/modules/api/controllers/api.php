@@ -1,5 +1,7 @@
 <?php
 
+use Symfony\Component\HttpFoundation\Request;
+
 /** @var $app App\Application */
 /** @var $api Silex\ControllerCollection */
 $api = $app['controllers_factory'];
