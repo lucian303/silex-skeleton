@@ -4,13 +4,22 @@ use Symfony\Component\HttpFoundation\Request;
 
 /** @var $app App\Application */
 $app->get('/', function() use ($app) {
-    return $app['twig']->render('main.html.twig', array());
+	/** @var $twig Twig_Environment*/
+	$twig = $app['twig'];
+
+    return $twig->render('main.html.twig', array());
 });
 
 $app->get('/login', function(Request $request) use ($app) {
-    return $app['twig']->render('login.html.twig', array(
+	/** @var $session Symfony\Component\HttpFoundation\Session\Session */
+	$session = $app['session'];
+
+	/** @var $twig Twig_Environment*/
+	$twig = $app['twig'];
+
+    return $twig->render('login.html.twig', array(
         'error'         => $app['security.last_error']($request),
-        'last_username' => $app['session']->get('_security.last_username'),
+        'last_username' => $session->get('_security.last_username'),
     ));
 });
 
