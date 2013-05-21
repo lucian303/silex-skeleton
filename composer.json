@@ -1,7 +1,7 @@
 {
 	"name": "lucian303/silex-skeleton",
 	"description": "App skeleton Using the Silex Framework",
-	"version": "0.0.1-dev",
+	"version": "0.1.0",
 	"type": "project",
 	"authors": [
 		{
