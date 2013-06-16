@@ -2,6 +2,8 @@
 
 ### A Silex application skeleton for macro and micro apps.
 
+Adding JS test of api. 
+
 The skeleton sets up Silex and common service providers such as db, logging, security, etc. Working login based on MySQL (or other RDBMS).
 
 It uses Twig currently for simplicity (8-10% performance hit for the templating engine). Due to convenience, I can accept this for now, although a switch to Zend_View / Zend_Layout would be preferable (assuming it can be benchmarked).
