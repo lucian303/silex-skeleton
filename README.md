@@ -2,7 +2,7 @@
 
 ### A Silex application skeleton for macro and micro apps.
 
-Adding JS test of api. 
+Adding JS test of api.
 
 The skeleton sets up Silex and common service providers such as db, logging, security, etc. Working login based on MySQL (or other RDBMS).
 
