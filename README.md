@@ -14,7 +14,7 @@ The skeleton is split up and modularized for the controllers and views. This let
 
 ### Usage
 
-Clone the repo. Write your code. Build your dream (or nightmare).
+Clone the repo. Run composer. Write your code. Build your dream (or nightmare).
 
 Feature requests, bug reports, ideas, discussions, comments, are all very welcome.
 
@@ -25,3 +25,5 @@ Lucian Hontau (lucian303)
 [http://lucianux.com/](http://lucianux.com/)
 
 Copyright 2013 Lucian Hontau
+
+Other packages including Symfony have their own copyrights. See respective files.
